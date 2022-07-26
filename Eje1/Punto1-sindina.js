@@ -36,7 +36,7 @@ async function input() {
                     tiempo = horas[1].split(":");
                     horaF = parseInt(tiempo[0]);
                     minF = parseInt(tiempo[1]);
-                    p.push(new Procedimiento(data[0], new Hora(horaI, minI), new Hora(horaF, minF)))
+                    p.push(new Procedimiento(data[0], new Hora(horaI, minI), new Hora(horaF, minF), horaF-horaI))
                 }
                 resolve(p);
             }
@@ -64,11 +64,37 @@ async function output(obj) {
  * Implementar el algoritmo y devolver un objeto de tipo Respuesta, el cual servirá
  * para imprimir la solución al problema como se requiere en el enunciado.
  */
+
+ function generateBST(array) {
+    this.value = array[0];
+    this.left = null;
+    this.rigth = null;
+    
+    array.map((procedimiento) => {
+        this.insert(procedimiento);
+    })
+  }
+  
+  generateBST.prototype.insert = function(value) {
+    if (this.value > value) {
+      if (!this.left) this.left = new generateBST([value]); // <- pasamos un arreglo
+      else this.left.insert(value);
+    } else if (this.value < value) {
+      if (!this.rigth) this.rigth = new generateBST([value]); // <- pasamos un arreglo
+      else this.rigth.insert(value);
+    }
+  }
+  
+  /* let tree = new generateBST([16,6,23,2,17,31,14,5]);
+  console.log(JSON.stringify(tree, null, 2)); */
+
 async function solve(n, procedimientos) {
 
-    
 
+    procedimientos.sort(((a,b) => a.horaInicio.hora - b.horaInicio.hora))
 
+    let tree = new generateBST(procedimientos);
+    console.log(JSON.stringify(tree, null, 2));
 
     return new Respuesta(0, new Hora(0, 0), []);
 }
@@ -85,11 +111,11 @@ function Respuesta(n, tiempoTotal, nombreProcedimientos){
     this.nombreProcedimientos = nombreProcedimientos;
 }
 
-function Procedimiento(nombre, horaInicio, horaFin){
+function Procedimiento(nombre, horaInicio, horaFin, tarda){
     this.nombre = nombre;
     this.horaInicio = horaInicio;
     this.horaFin = horaFin;
-    
+    this.tarda = tarda;
 }
 
 class Hora {
