@@ -1,0 +1,4 @@
+3 3
+Libro1 3
+Libro2 10
+Libro3 9
