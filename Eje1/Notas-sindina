@@ -1,0 +1,37 @@
+Lógica del algoritmo:
+
+1. Recibir el archivo con todos los procedimientos y la cantidad de ellos.
+
+2. Guardar todos los procedimientos como objetos de tipo Procedimientos en un arreglo.
+
+3. Organizar el arreglo de Procedimientos por hora de inicio, de menor a mayor (Radix-sort).
+
+(Se llenará un arbol con los Procedimientos para hallar el camino más largo que pueda máximizar el uso de la sala)
+
+4. Tomar el primer Procedimiento del arreglo como raiz del arbol y pivote.
+
+5. Tomar la horaFinal del pivote, para ver si hay un Procedimiento disponible más grande en el arreglo
+	con una horaInicial igual o mayor a la horaFinal del anterior Procedimiento.
+	
+	Dentro hay dos caminos posibles:
+	
+		- Que la horaFinal del Procedimiento escogido sea igual a 24.
+			- Si existe, se convierte en el nodo hoja derecho.
+			- De no existir se pone nil.
+			
+		- Que la horaFinal del Procedimiento escogido sea menor a 24.
+			- Si existe, se convierte en el nodo hoja izquierdo. Y se toma como nuevo pivote.
+			- De no existir se pone nil.
+		
+	
+	
+6. Si los dos nodos hijos del pivote son nil, empezamos a determinar el camino más largo del árbol
+	el cual será un candidato a ser la forma más óptima de máximizar el uso de la sala. 
+	
+	Sino, repetir el paso 5.
+	
+(Fin de llenado del arbol)
+
+7. Repetir el paso 4 hasta terminar todos los Procedimientos del arreglo.
+
+8. 
