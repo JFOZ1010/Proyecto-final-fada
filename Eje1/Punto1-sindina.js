@@ -73,13 +73,18 @@ async function output(obj) {
     array.map((procedimiento) => {
         this.insert(procedimiento);
     })
+/* 
+    let posible = true;
+
+    array.filter((a) => a.horaInicio.fin <= 24) */
+
   }
   
   generateBST.prototype.insert = function(value) {
-    if (this.value > value) {
+    if (this.value.horaInicio.hora > value.horaInicio.hora) {
       if (!this.left) this.left = new generateBST([value]); // <- pasamos un arreglo
       else this.left.insert(value);
-    } else if (this.value < value) {
+    } else if (this.value.horaInicio.hora < value.horaInicio.hora) {
       if (!this.rigth) this.rigth = new generateBST([value]); // <- pasamos un arreglo
       else this.rigth.insert(value);
     }
@@ -93,8 +98,20 @@ async function solve(n, procedimientos) {
 
     procedimientos.sort(((a,b) => a.horaInicio.hora - b.horaInicio.hora))
 
+    console.log(procedimientos)
+
     let tree = new generateBST(procedimientos);
-    console.log(JSON.stringify(tree, null, 2));
+    
+    let soluciones = [tree];
+
+    for(let i of procedimientos){
+        procedimientos.shift()
+        tree = new generateBST(procedimientos);
+        soluciones.push(tree)
+    }
+
+    /* console.log(JSON.stringify(tree, null, 2)); */
+    console.log(soluciones[0].rigth);
 
     return new Respuesta(0, new Hora(0, 0), []);
 }
