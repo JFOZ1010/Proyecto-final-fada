@@ -1,0 +1,79 @@
+{
+    "value": {
+      "nombre": "Proc5",
+      "horaInicio": {
+        "hora": 0,
+        "minutos": 0
+      },
+      "horaFin": {
+        "hora": 8,
+        "minutos": 0
+      },
+      "tarda": 8
+    },
+
+    "left": null,
+
+    "rigth": {
+      "value": {
+        "nombre": "Proc4",
+        "horaInicio": {
+          "hora": 3,
+          "minutos": 0
+        },
+        "horaFin": {
+          "hora": 12,
+          "minutos": 0
+        },
+        "tarda": 9
+      },
+      
+      "left": null,
+      "rigth": {
+        "value": {
+          "nombre": "Proc3",
+          "horaInicio": {
+            "hora": 11,
+            "minutos": 0
+          },
+          "horaFin": {
+            "hora": 22,
+            "minutos": 0
+          },
+          "tarda": 11
+        },
+        "left": null,
+        "rigth": {
+          "value": {
+            "nombre": "Proc2",
+            "horaInicio": {
+              "hora": 12,
+              "minutos": 0
+            },
+            "horaFin": {
+              "hora": 24,
+              "minutos": 0
+            },
+            "tarda": 12
+          },
+          "left": null,
+          "rigth": {
+            "value": {
+              "nombre": "Proc1",
+              "horaInicio": {
+                "hora": 22,
+                "minutos": 0
+              },
+              "horaFin": {
+                "hora": 24,
+                "minutos": 0
+              },
+              "tarda": 2
+            },
+            "left": null,
+            "rigth": null
+          }
+        }
+      }
+    }
+  }
