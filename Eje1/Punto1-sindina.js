@@ -11,6 +11,7 @@ let ARCHIVO_ESCRITURA = 'outA'
 async function input() {
     let line = 0;
     let readData = "";
+
     const readLine = () => {
         let inputLine = readData[line];
         line++;
@@ -36,7 +37,21 @@ async function input() {
                     tiempo = horas[1].split(":");
                     horaF = parseInt(tiempo[0]);
                     minF = parseInt(tiempo[1]);
-                    p.push(new Procedimiento(data[0], new Hora(horaI, minI), new Hora(horaF, minF), horaF-horaI))
+                    let prueba = horaF-horaI;
+
+                    if(minI == 30 && minF == 0){
+
+                        prueba -= 0.5;
+                        
+
+                    }else if(minF == 30 && minI == 0){
+
+                        prueba += 0.5;
+
+                    }
+
+                    p.push(new Procedimiento(data[0], new Hora(horaI, minI), new Hora(horaF, minF), prueba));
+                    console.log(`p: ${p}`); 
                 }
                 resolve(p);
             }
@@ -80,6 +95,7 @@ async function output(obj) {
 
   }
   
+/* A binary search tree, and insertion.  */
   generateBST.prototype.insert = function(value) {
     if (this.value.horaInicio.hora > value.horaInicio.hora) {
       if (!this.left) this.left = new generateBST([value]); // <- pasamos un arreglo
@@ -105,13 +121,15 @@ async function solve(n, procedimientos) {
     let soluciones = [tree];
 
     for(let i of procedimientos){
+        /* It removes the first element from an array and returns that element. This method changes the
+        length of the array. */
         procedimientos.shift()
         tree = new generateBST(procedimientos);
         soluciones.push(tree)
     }
 
     /* console.log(JSON.stringify(tree, null, 2)); */
-    console.log(soluciones[0].rigth);
+    console.log("Solutions: ", soluciones[0].rigth);
 
     return new Respuesta(0, new Hora(0, 0), []);
 }
@@ -155,3 +173,31 @@ class Hora {
     }
 }
 main();
+
+
+
+//crea el algoritmo merge
+function merge(arr1, arr2){
+    let res = [];
+    let i = 0;
+    let j = 0;
+    while(i < arr1.length && j < arr2.length){
+        if(arr1[i] < arr2[j]){
+            res.push(arr1[i]);
+            i++;
+        }
+        else{
+            res.push(arr2[j]);
+            j++;
+        }
+    }
+    while(i < arr1.length){
+        res.push(arr1[i]);
+        i++;
+    }
+    while(j < arr2.length){
+        res.push(arr2[j]);
+        j++;
+    }
+    return res;
+}

@@ -8,7 +8,7 @@ function generateBST(array) {
       this.insert(array[i]);
       i++;
     }
-  }
+  }3
   
   generateBST.prototype.insert = function(value) {
     if (this.value > value) {
